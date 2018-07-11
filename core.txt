@@ -1,0 +1,217 @@
+#
+ version 5.20, Release 2220P02
+#
+ sysname Core
+#
+ irf mac-address persistent timer
+ irf auto-update enable
+ undo irf link-delay
+#
+ domain default enable system
+#
+ ipv6
+#
+ telnet server enable
+#
+ undo ip http enable
+#
+ password-recovery enable
+#
+vlan 1
+#
+domain system
+ access-limit disable
+ state active   
+ idle-cut disable
+ self-service-url disable
+#
+user-group system
+ group-attribute allow-guest
+#
+interface NULL0
+#
+interface Vlan-interface1
+ ip address dhcp-alloc client-identifier mac Vlan-interface1
+#
+interface GigabitEthernet1/0/1
+ port link-mode route
+ ipv6 address 2001:DA8:B3:EF01::1/64
+ ip address 10.255.1.1 255.255.255.0
+#
+interface GigabitEthernet1/0/2
+ port link-mode route
+ ipv6 address 2001:DA8:B3:EF02::1/64
+ ip address 10.255.2.1 255.255.255.0
+#
+interface GigabitEthernet1/0/3
+ port link-mode route
+ ipv6 address 2001:DA8:B3:EF03::1/64
+ ip address 10.255.3.1 255.255.255.0
+#
+interface GigabitEthernet1/0/4
+ port link-mode route
+ ipv6 address 2001:DA8:B3:EF04::1/64
+ ip address 10.255.4.1 255.255.255.0
+#
+interface GigabitEthernet1/0/5
+ port link-mode route
+ ipv6 address 2001:DA8:B3:EF05::1/64
+ ip address 10.255.5.1 255.255.255.0
+#
+interface GigabitEthernet1/0/6
+ port link-mode route
+ ipv6 address 2001:DA8:B3:EF06::1/64
+ ip address 10.255.6.1 255.255.255.0
+#
+interface GigabitEthernet1/0/7
+ port link-mode route
+ ipv6 address 2001:DA8:B3:EF07::1/64
+ ip address 10.255.7.1 255.255.255.0
+#               
+interface GigabitEthernet1/0/8
+ port link-mode route
+ ipv6 address 2001:DA8:B3:EF08::1/64
+ ip address 10.255.8.1 255.255.255.0
+#
+interface GigabitEthernet1/0/19
+ port link-mode route
+ description ipv4 uplink
+ ip address 10.255.255.2 255.255.255.0
+#
+interface GigabitEthernet1/0/20
+ port link-mode route
+ description ipv6 uplink
+ ipv6 address 2001:DA8:B3:FB80::2/64
+#
+interface GigabitEthernet1/0/9
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/10
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/11
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/12
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/13
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/14
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/15
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/16
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/17
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/18
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/21
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/22
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/23
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/24
+ port link-mode bridge
+#
+interface GigabitEthernet1/0/25
+ port link-mode bridge
+ shutdown
+#
+interface GigabitEthernet1/0/26
+ port link-mode bridge
+ shutdown
+#
+interface GigabitEthernet1/0/27
+ port link-mode bridge
+ shutdown
+#               
+interface GigabitEthernet1/0/28
+ port link-mode bridge
+ shutdown
+#
+bgp 100
+ default-route imported
+ import-route static
+ undo synchronization
+ peer 10.255.4.2 as-number 1004
+ peer 10.255.8.2 as-number 1008
+ peer 10.255.1.2 as-number 1001
+ peer 10.255.5.2 as-number 1005
+ peer 10.255.2.2 as-number 1002
+ peer 10.255.6.2 as-number 1006
+ peer 10.255.3.2 as-number 1003
+ peer 10.255.7.2 as-number 1007
+ peer 10.255.4.2 ip-prefix 4 import
+ peer 10.255.8.2 ip-prefix 8 import
+ peer 10.255.1.2 ip-prefix 1 import
+ peer 10.255.5.2 ip-prefix 5 import
+ peer 10.255.2.2 ip-prefix 2 import
+ peer 10.255.6.2 ip-prefix 6 import
+ peer 10.255.3.2 ip-prefix 3 import
+ peer 10.255.7.2 ip-prefix 7 import
+ #
+ ipv6-family
+  default-route imported
+  import-route static
+  undo synchronization
+  peer 2001:DA8:B3:EF01::2 as-number 1001
+  peer 2001:DA8:B3:EF02::2 as-number 1002
+  peer 2001:DA8:B3:EF03::2 as-number 1003
+  peer 2001:DA8:B3:EF04::2 as-number 1004
+  peer 2001:DA8:B3:EF05::2 as-number 1005
+  peer 2001:DA8:B3:EF06::2 as-number 1006
+  peer 2001:DA8:B3:EF07::2 as-number 1007
+  peer 2001:DA8:B3:EF08::2 as-number 1008
+  peer 2001:DA8:B3:EF01::2 ipv6-prefix 1 import
+  peer 2001:DA8:B3:EF02::2 ipv6-prefix 2 import
+  peer 2001:DA8:B3:EF03::2 ipv6-prefix 3 import
+  peer 2001:DA8:B3:EF04::2 ipv6-prefix 4 import
+  peer 2001:DA8:B3:EF05::2 ipv6-prefix 5 import
+  peer 2001:DA8:B3:EF06::2 ipv6-prefix 6 import
+  peer 2001:DA8:B3:EF07::2 ipv6-prefix 7 import
+  peer 2001:DA8:B3:EF08::2 ipv6-prefix 8 import
+#               
+ ip ip-prefix 1 index 10 permit 10.1.0.0 16
+ ip ip-prefix 2 index 10 permit 10.2.0.0 16
+ ip ip-prefix 3 index 10 permit 10.3.0.0 16
+ ip ip-prefix 4 index 10 permit 10.4.0.0 16
+ ip ip-prefix 5 index 10 permit 10.5.0.0 16
+ ip ip-prefix 6 index 10 permit 10.6.0.0 16
+ ip ip-prefix 7 index 10 permit 10.7.0.0 16
+ ip ip-prefix 8 index 10 permit 10.8.0.0 16
+#
+ ip ipv6-prefix 1 index 10 permit 2001:DA8:B3:E100:: 56
+ ip ipv6-prefix 2 index 10 permit 2001:DA8:B3:E200:: 56
+ ip ipv6-prefix 3 index 10 permit 2001:DA8:B3:E300:: 56
+ ip ipv6-prefix 4 index 10 permit 2001:DA8:B3:E400:: 56
+ ip ipv6-prefix 5 index 10 permit 2001:DA8:B3:E500:: 56
+ ip ipv6-prefix 6 index 10 permit 2001:DA8:B3:E600:: 56
+ ip ipv6-prefix 7 index 10 permit 2001:DA8:B3:E700:: 56
+ ip ipv6-prefix 8 index 10 permit 2001:DA8:B3:E800:: 56
+#
+ ip route-static 0.0.0.0 0.0.0.0 10.255.255.1
+ ip route-static 10.0.0.0 255.0.0.0 NULL0
+#
+ ipv6 route-static :: 0 2001:DA8:B3:FB80::1
+ ipv6 route-static 2001:DA8:B3:E000:: 52 NULL0
+#
+ load xml-configuration
+#
+ load tr069-configuration
+#
+user-interface aux 0
+user-interface vty 0 15
+ user privilege level 3
+ set authentication password cipher ********************6U7bKt+wrILjskXBvK1c=
